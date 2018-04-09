@@ -3,7 +3,7 @@ XHIKE is a decentralized P2P network and a eletronic coin based on ethereum ERC2
 created to allow fast, global and convenient trading of goods, services <br/>
 across any border and without any possiblity of downtime and censorship.<br/>
 
-Welcome to the ecossistem.
+Welcome to the ecosystem.
 
 ## Ecossistem
 XHIKE has a plethora of products and offers for its holders:
