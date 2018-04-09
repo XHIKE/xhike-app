@@ -48,3 +48,7 @@
 .main-footer {
   position: inherit;
 }
+
+.xk-money-decimal {
+  color: gray;
+}
