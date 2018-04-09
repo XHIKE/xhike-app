@@ -36,7 +36,15 @@
   padding-left: 0px;
 }
 
+.content-wrapper{
+  background-color: #ddd;
+}
+
 .content-header {
   padding: 10px;
   background-color: #fff !important;
+}
+
+.main-footer {
+  position: inherit;
 }
