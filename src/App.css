@@ -26,3 +26,17 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.content-wrapper, .right-side, .main-footer {
+  margin-left: 0px;
+}
+
+.content {
+  padding-top: 0px;
+  padding-left: 0px;
+}
+
+.content-header {
+  padding: 10px;
+  background-color: #fff !important;
+}
