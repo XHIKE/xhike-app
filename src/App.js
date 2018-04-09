@@ -4,17 +4,13 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-
-        <GoogleApiWrapper />
-      </div>
-    );
-  }
+    render() {
+        return (
+            <div className="App">
+                <GoogleApiWrapper />
+            </div>
+        );
+    }
 }
 
 export default App;
