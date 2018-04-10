@@ -32,8 +32,8 @@ export default class Navbar extends Component {
                         </div>
 
                         <div className="col-sm-4" style={{textAlign: "center"}}>
-                            <Route exact path="/" component={() => <h1>Home</h1>}/>
-                            <Route path="/home" component={() => <h1>Home</h1>}/>
+                            <Route exact path="/" component={() => <h1>XHIKE Network</h1>}/>
+                            <Route path="/home" component={() => <h1>XHIKE Network</h1>}/>
                             <Route path="/marketplace" component={() => <h1>Marketplace</h1>}/>
                             <Route path="/wallet" component={() => <h1>My Wallet</h1>}/>
                         </div>

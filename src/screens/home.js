@@ -3,6 +3,19 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Counter from '../components/counter';
 import TableData from '../components/tabledata';
 
+export default class Home extends Component {
+    render() {
+        return (
+            <div className="container-fluid">
+                <div className="row">
+                    <CoinStats />
+                    <LastTx />
+                </div>
+            </div>
+        );
+    }
+}
+
 class CoinStats extends Component {
     render() {
         return (
@@ -44,15 +57,4 @@ class LastTx extends Component {
     }
 }
 
-export default class Home extends Component {
-    render() {
-        return (
-            <div className="container-fluid">
-                <div className="row">
-                    <CoinStats />
-                    <LastTx />
-                </div>
-            </div>
-        );
-    }
-}
+
