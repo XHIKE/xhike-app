@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import NumberFormat from 'react-number-format';
+
 
 export default class Counter extends Component {
     constructor(props) {
         super(props);
         let conf = {
             label: 'TOTAL',
-            count: '10,000,00',
+            count: '0,000,00',
             icon: 'fa fa-google-plus',
             color: 'bg-gray'
         };
@@ -23,7 +25,7 @@ export default class Counter extends Component {
                             {this.props.label}
                         </span>
                         <span className="info-box-number">
-                            {this.props.count}
+                            <NumberFormat value={this.props.count} displayType={'text'} thousandSeparator={true}  suffix={this.props.symbol} />
                         </span>
                     </div>
                 </div>

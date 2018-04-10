@@ -35,7 +35,7 @@ class ContractView extends Component {
         this.state = {
             name: data.name || 'My Contract',
             address: data.address || '0xasd',
-            abi: data.abi || '{}'
+            jsonInterface: data.jsonInterface || '{}'
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -104,13 +104,13 @@ class ContractView extends Component {
                         </div>
 
                         <div className="form-group">
-                            <label>ABI</label>
+                            <label>JSON</label>
                             <textarea className="textarea form-control" 
                                 required
-                                name="abi"
+                                name="jsonInterface"
                                 placeholder="{}" 
                                 style={{width: '100%', height: '200px', fontSize: '14px', lineHeight: '18px', border: '1px solid #dddddd', padding: '10px'}}
-                                value={this.state.abi}
+                                value={this.state.jsonInterface}
                                 onChange={this.handleChange}></textarea>
                         </div>
 

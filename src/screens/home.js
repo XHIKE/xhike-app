@@ -2,36 +2,85 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Counter from '../components/counter';
 import TableData from '../components/tabledata';
+import Settings from '../services/smartcontract';
 
 var Web3 = require('web3');
 var web3 = new Web3("ws://localhost:8545");
 
-export default class Home extends Component {
+window.web3 = web3;
+
+export default class Home extends Component {    
     render() {
         return (
             <div className="container-fluid" style={{marginTop: '15px'}}>
                 <div className="row">
-                    <CoinStats />
-                    <LastTx />
+                    <TokenStats />
+                    <TokenTx />
                 </div>
             </div>
         );
     }
 }
 
-class CoinStats extends Component {
+class TokenStats extends Component {
+    constructor(props) {
+        super(props);
+        let address = props.address || '0x4861c5f2563586069690b8ee9e5dec8fab626406';
+        this.state = {
+            volume24H: 0,
+            totalSupply: 0,
+            walletCount: 0,
+            fromAddress: address,
+            symbol: ' '
+        };
+
+        let contractData = Settings.load();
+        let interface_ = JSON.parse(contractData.jsonInterface);
+        let gasPriceWei='20000000000';
+
+        this.contract = new web3.eth.Contract(interface_.abi, contractData.address, {
+            from: address, // default from address
+            gasPrice: gasPriceWei // default gas price in wei, 20 gwei in this case
+        });
+
+        window.contract = this.contract;
+    }
+
+    componentDidMount() {
+        let self=this;
+        let p1 = this.contract.methods.totalSupply()
+        .call({from: this.state.fromAddress});
+
+        let p2 = this.contract.methods.decimals()
+        .call({from: this.state.fromAddress});
+
+        self.contract.methods.symbol()
+        .call({from: self.state.fromAddress})
+        .then(function (symbol){
+            self.setState({symbol: ' ' + symbol});
+        });
+
+        Promise.all([p1, p2])
+        .then(function (ary){
+            var totalSupply = ary[0];
+            var decimals = ary[1];
+
+            self.setState({totalSupply: totalSupply / Math.pow(10,decimals)});
+        });
+    }
+
     render() {
         return (
             <div>
-                <Counter label="24H Volume" count="2,400,000 XHK" />
-                <Counter label="Total supply" count="6,426,123 XHK" />
-                <Counter label="Wallets" count="240,000" />
+                <Counter label="24H Volume" count={this.state.volume24H} symbol={this.state.symbol} />
+                <Counter label="Total supply" count={this.state.totalSupply} symbol={this.state.symbol} />
+                <Counter label="Wallets" count={this.state.walletCount} />
             </div>
         );
     }
 }
 
-class LastTx extends Component {
+class TokenTx extends Component {
     render() {
         return (
             <div className="col-sm-12">

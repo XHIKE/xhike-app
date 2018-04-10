@@ -16,7 +16,7 @@ export default class Settings {
 
     static load() {
         let rawJson = localStorage.getItem('sm_data');
-        let data = {};
+        let data = {isEmpty: true};
         if (rawJson) {
             data = JSON.parse(rawJson);
         }
