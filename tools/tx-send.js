@@ -4,7 +4,7 @@ var web3 = new Web3('ws://localhost:8545');
 var txData = {
     from: '0xd039a54e32f2c583d3cb4d19e0bd67e0040daf69', 
     to: '0x4861c5f2563586069690b8ee9e5dec8fab626406',
-    amount: '1000000'
+    value: '10000000000000000000'
 };
 
 web3.eth.sendTransaction(txData)
