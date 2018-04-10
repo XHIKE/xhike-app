@@ -5,7 +5,6 @@ export default class Home extends Component {
     render() {
         return (
             <div className="App">
-                <span>Home page</span>
             </div>
         );
     }
