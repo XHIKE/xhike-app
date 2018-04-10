@@ -40,7 +40,7 @@ export default class Navbar extends Component {
 
                         <div className="col-sm-4 pull-right" style={{textAlign: "right"}} title="Your balance">
                             <h2>
-                                250<span className="xk-money-decimal">.19</span> <small>XHK</small>
+                                0<span className="xk-money-decimal">.00</span> <small>XHK</small>
                             </h2>
                         </div>
                     </div>
