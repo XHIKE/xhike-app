@@ -1,10 +1,32 @@
 var Web3 = require('web3');
 var web3 = new Web3('ws://localhost:8545');
 
+function parseArguments() {
+    const result = Object.create(null);
+    process.argv.forEach((argument) => {
+        if (argument.indexOf('=') != -1) {
+            const index = argument.indexOf('=');
+            const name = argument.substr(0, index);
+            const value = argument.substr(index + 1);
+            result[name] = value;
+        }
+        else {
+            result[argument] = true;
+        }
+    });
+    return result;
+}
+
+let args=parseArguments();
+let asset='eth';
+let fromAddress=args.from || '0xd039a54e32f2c583d3cb4d19e0bd67e0040daf69';
+let toAddress= args.to || '0x4861c5f2563586069690b8ee9e5dec8fab626406';
+let amount=args.amount || '10000000000000000000';
+
 var txData = {
-    from: '0xd039a54e32f2c583d3cb4d19e0bd67e0040daf69', 
-    to: '0x4861c5f2563586069690b8ee9e5dec8fab626406',
-    value: '10000000000000000000'
+    from: fromAddress, 
+    to: toAddress,
+    value: amount
 };
 
 web3.eth.sendTransaction(txData)

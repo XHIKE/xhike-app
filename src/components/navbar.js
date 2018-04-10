@@ -14,6 +14,7 @@ export default class Navbar extends Component {
                             <Route path="/home" component={() => <h1>XHIKE Network</h1>}/>
                             <Route path="/marketplace" component={() => <h1>Marketplace</h1>}/>
                             <Route path="/wallet" component={() => <h1>My Wallet</h1>}/>
+                            <Route path="/contract/setting" component={() => <h1>Smart Contract</h1>}/>
                         </div>
 
                         <CoinBalance />
@@ -50,13 +51,19 @@ class MenuItemList extends Component {
 
                         <li className="dropdown notifications-menu">
                             <Link activeClassName="topMenuActive" to={'/marketplace'}>
-                                <i className="fa fa-balance-scale"></i>
+                                <i className="fa fa-map"></i>
                             </Link>
                         </li>
 
                         <li className="dropdown tasks-menu">
                             <Link activeClassName="topMenuActive" to={'/wallet'}>
                                 <i className="fa fa-lock"></i>
+                            </Link>
+                        </li>
+
+                        <li className="dropdown tasks-menu">
+                            <Link activeClassName="topMenuActive" to={'/contract/settings'}>
+                                <i className="fa fa-balance-scale"></i>
                             </Link>
                         </li>
                     </ul>
