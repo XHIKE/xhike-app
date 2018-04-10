@@ -14,7 +14,7 @@ export default class Navbar extends Component {
                             <Route path="/home" component={() => <h1>XHIKE Network</h1>}/>
                             <Route path="/marketplace" component={() => <h1>Marketplace</h1>}/>
                             <Route path="/wallet" component={() => <h1>My Wallet</h1>}/>
-                            <Route path="/contract/setting" component={() => <h1>Smart Contract</h1>}/>
+                            <Route path="/contract/settings" component={() => <h1>Smart Contract</h1>}/>
                         </div>
 
                         <CoinBalance />

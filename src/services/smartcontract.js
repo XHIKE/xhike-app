@@ -7,4 +7,19 @@ export default class Settings {
     static getAddress() {
         return localStorage.getItem('sm_address');
     }
+
+    static save(data) {
+        let json = JSON.stringify(data);
+        localStorage.setItem('sm_data', json);
+        return data;
+    }
+
+    static load() {
+        let rawJson = localStorage.getItem('sm_data');
+        let data = {};
+        if (rawJson) {
+            data = JSON.parse(rawJson);
+        }
+        return data;     
+    }
 }
