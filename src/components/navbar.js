@@ -35,7 +35,7 @@ export default class Navbar extends Component {
                             <Route exact path="/" component={() => <h1>Home</h1>}/>
                             <Route path="/home" component={() => <h1>Home</h1>}/>
                             <Route path="/marketplace" component={() => <h1>Marketplace</h1>}/>
-                            <Route path="/wallet" component={() => <h1>Wallet</h1>}/>
+                            <Route path="/wallet" component={() => <h1>My Wallet</h1>}/>
                         </div>
 
                         <div className="col-sm-4 pull-right" style={{textAlign: "right"}} title="Your balance">
