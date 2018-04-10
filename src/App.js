@@ -13,7 +13,7 @@ export default class App extends Component {
             <Router>
                 <div className="content-wrapper">
                     <Navbar />
-                    <section className="content" style={{marginTop: '15px'}}>
+                    <section className="content">
                         <Route exact path="/" component={Home}/>
                         <Route path="/home" component={Home}/>
                         <Route path="/marketplace" component={Marketplace}/>

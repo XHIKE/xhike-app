@@ -3,10 +3,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Counter from '../components/counter';
 import TableData from '../components/tabledata';
 
+var Web3 = require('web3');
+var web3 = new Web3("ws://localhost:8545");
+
 export default class Home extends Component {
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid" style={{marginTop: '15px'}}>
                 <div className="row">
                     <CoinStats />
                     <LastTx />
@@ -21,7 +24,7 @@ class CoinStats extends Component {
         return (
             <div>
                 <Counter label="24H Volume" count="2,400,000 XHK" />
-                <Counter label="Circulating supply" count="6,426,123 XHK" />
+                <Counter label="Total supply" count="6,426,123 XHK" />
                 <Counter label="Wallets" count="240,000" />
             </div>
         );
