@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
-import GoogleApiWrapper from './components/map';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
-var web3 = require('web3');
+import Navbar from './components/navbar';
+import Home from './screens/home';
+import Marketplace from './screens/marketplace';
+import Wallet from './screens/wallet';
 
-class App extends Component {
+export default class App extends Component {
     render() {
         return (
-            <div className="App">
-                <GoogleApiWrapper />
-            </div>
+            <Router>
+                <div className="content-wrapper">
+                    <Navbar />
+                    <section className="content">
+                        <Route exact path="/" component={Home}/>
+                        <Route path="/home" component={Home}/>
+                        <Route path="/marketplace" component={Marketplace}/>
+                        <Route path="/wallet" component={Wallet}/>
+                    </section>
+                </div>
+            </Router>
         );
     }
 }
-
-export default App;
