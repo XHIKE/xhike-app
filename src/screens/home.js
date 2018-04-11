@@ -4,7 +4,7 @@ import Counter from '../components/counter';
 import TableData from '../components/tabledata';
 import {Token} from '../services/smartcontract';
 
-export default class Home extends Component {    
+export default class Home extends Component {
     render() {
         return (
             <div className="container-fluid" style={{marginTop: '15px'}}>
@@ -36,13 +36,15 @@ class TokenStats extends Component {
         let supply = Token.totalSupply();
         let volume24H = Token.volume24H();
         let symbol = Token.symbol();
+        let wallets = Token.countWallets();
 
-        Promise.all([supply, volume24H, symbol])
+        Promise.all([supply, volume24H, symbol, wallets])
         .then(function (ary){
             self.setState({
                 volume24H: ary[1],
                 totalSupply: ary[0],
-                symbol: ' ' + ary[2]
+                symbol: ' ' + ary[2],
+                walletCount: ary[3]
             });
         });
     }

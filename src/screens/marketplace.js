@@ -10,4 +10,3 @@ export default class Marketplace extends Component {
         );
     }
 }
-

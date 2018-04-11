@@ -11,7 +11,6 @@ var web3 = new Web3("ws://"+ host +":8545");
 
 window.web3 = web3;
 
-
 export default class Settings {
     static setAddress(value) {
         localStorage.setItem('sm_address', value);
@@ -45,14 +44,14 @@ export default class Settings {
 }
 
 export class Token {
-    static name() {        
+    static name() {
         return new Promise(function (resolve, reject){
             // totalSupply: totalSupply / Math.pow(10,decimals)
             resolve('XHIKE');
         });
     }
 
-    static symbol() {        
+    static symbol() {
         return new Promise(function (resolve, reject){
             // totalSupply: totalSupply / Math.pow(10,decimals)
             resolve('XHK');
@@ -66,10 +65,16 @@ export class Token {
         });
     }
 
-    static volume24H(){
+    static volume24H() {
         return new Promise(function (resolve, reject){
             resolve(1244560);
         });
+    }
+
+    static countWallets() {
+        return new Promise(function (resolve, reject){
+            resolve(24000);
+        });        
     }
 
     static filterTx(start, limit) {
@@ -78,13 +83,13 @@ export class Token {
         });
     }
 
-    static getTx(txHash){        
+    static getTx(txHash) {
         return new Promise(function (resolve, reject){
             resolve([]);
         });
     }
 
-    static getBlock(blockTash) {        
+    static getBlock(blockTash) {
         return new Promise(function (resolve, reject){
             resolve([]);
         });
@@ -95,7 +100,7 @@ export class Token {
             resolve([]);
         });        
     }
-
+    https://github.com/pywaves/pywaves
     static getAllAssets() {
         return new Promise(function (resolve, reject){
             resolve([]);
