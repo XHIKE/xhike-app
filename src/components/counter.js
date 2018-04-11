@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NumberFormat from 'react-number-format';
 
-
 export default class Counter extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +24,12 @@ export default class Counter extends Component {
                             {this.props.label}
                         </span>
                         <span className="info-box-number">
-                            <NumberFormat value={this.props.count} displayType={'text'} thousandSeparator={true}  suffix={this.props.symbol} />
+                            <NumberFormat 
+                                value={this.props.count} 
+                                displayType={'text'} 
+                                thousandSeparator={true}  
+                                suffix={this.props.symbol} 
+                            />
                         </span>
                     </div>
                 </div>

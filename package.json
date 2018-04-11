@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "chalk": "^2.3.2",
+    "ethereum-blockies": "^0.1.1",
     "ethers": "^3.0.9",
     "google-maps": "^3.2.1",
     "google-maps-react": "^2.0.0",

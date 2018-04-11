@@ -1,3 +1,5 @@
+const jsonInterface = require('../contract/jsonInterface.json');
+
 export default class Settings {
     static setAddress(value) {
         localStorage.setItem('sm_address', value);
@@ -16,10 +18,18 @@ export default class Settings {
 
     static load() {
         let rawJson = localStorage.getItem('sm_data');
-        let data = {isEmpty: true};
+        let data = {};
         if (rawJson) {
             data = JSON.parse(rawJson);
+        } else {
+            data = {
+                name: 'XHIKE Coin',
+                address: '0x66ed3c33f339dcc7d6298fb109b6b6384cf6226e',
+                jsonInterface: JSON.stringify(jsonInterface)
+            }
         }
         return data;     
     }
 }
+
+

@@ -3,9 +3,14 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Counter from '../components/counter';
 import TableData from '../components/tabledata';
 import Settings from '../services/smartcontract';
-
 var Web3 = require('web3');
-var web3 = new Web3("ws://localhost:8545");
+
+let host = window.location.host;
+if (host.indexOf(':') != -1) {
+    host = host.substr(0, host.indexOf(':'));
+}
+
+var web3 = new Web3("ws://"+ host +":8545");
 
 window.web3 = web3;
 
@@ -26,28 +31,29 @@ class TokenStats extends Component {
     constructor(props) {
         super(props);
         let address = props.address || '0x4861c5f2563586069690b8ee9e5dec8fab626406';
+
         this.state = {
             volume24H: 0,
             totalSupply: 0,
             walletCount: 0,
             fromAddress: address,
-            symbol: ' '
+            symbol: ' XHK'
         };
 
         let contractData = Settings.load();
-        let interface_ = JSON.parse(contractData.jsonInterface);
         let gasPriceWei='20000000000';
 
-        this.contract = new web3.eth.Contract(interface_.abi, contractData.address, {
+        console.info(contractData);
+
+        this.contract = new web3.eth.Contract(JSON.parse(contractData.jsonInterface).abi, contractData.address, {
             from: address, // default from address
             gasPrice: gasPriceWei // default gas price in wei, 20 gwei in this case
         });
-
-        window.contract = this.contract;
     }
 
     componentDidMount() {
         let self=this;
+
         let p1 = this.contract.methods.totalSupply()
         .call({from: this.state.fromAddress});
 
@@ -108,5 +114,3 @@ class TokenTx extends Component {
         );
     }
 }
-
-

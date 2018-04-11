@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink as Link } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 
 export default class Navbar extends Component {
     render() {
