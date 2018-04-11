@@ -1,4 +1,16 @@
-const jsonInterface = require('../contract/jsonInterface.json');
+const jsonInterface = require('./jsonInterface.json');
+
+var Web3 = require('web3');
+
+let host = window.location.host;
+if (host.indexOf(':') != -1) {
+    host = host.substr(0, host.indexOf(':'));
+}
+
+var web3 = new Web3("ws://"+ host +":8545");
+
+window.web3 = web3;
+
 
 export default class Settings {
     static setAddress(value) {
@@ -32,4 +44,62 @@ export default class Settings {
     }
 }
 
+export class Token {
+    static name() {        
+        return new Promise(function (resolve, reject){
+            // totalSupply: totalSupply / Math.pow(10,decimals)
+            resolve('XHIKE');
+        });
+    }
+
+    static symbol() {        
+        return new Promise(function (resolve, reject){
+            // totalSupply: totalSupply / Math.pow(10,decimals)
+            resolve('XHK');
+        });
+    }
+
+    static totalSupply() {
+        return new Promise(function (resolve, reject){
+            // totalSupply: totalSupply / Math.pow(10,decimals)
+            resolve(58000000);
+        });
+    }
+
+    static volume24H(){
+        return new Promise(function (resolve, reject){
+            resolve(1244560);
+        });
+    }
+
+    static filterTx(start, limit) {
+        return new Promise(function (resolve, reject){
+            resolve([]);
+        });
+    }
+
+    static getTx(txHash){        
+        return new Promise(function (resolve, reject){
+            resolve([]);
+        });
+    }
+
+    static getBlock(blockTash) {        
+        return new Promise(function (resolve, reject){
+            resolve([]);
+        });
+    }
+
+    static getAsset(assetId) {
+        return new Promise(function (resolve, reject){
+            resolve([]);
+        });        
+    }
+
+    static getAllAssets() {
+        return new Promise(function (resolve, reject){
+            resolve([]);
+        });        
+    }
+}
 

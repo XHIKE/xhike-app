@@ -62,11 +62,11 @@ class MenuItemList extends Component {
                             </Link>
                         </li>
 
-                        <li className="dropdown tasks-menu">
+                        {/* <li className="dropdown tasks-menu">
                             <Link activeClassName="topMenuActive" to={'/contract/settings'}>
                                 <i className="fa fa-balance-scale"></i>
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>

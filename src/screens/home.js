@@ -2,17 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Counter from '../components/counter';
 import TableData from '../components/tabledata';
-import Settings from '../services/smartcontract';
-var Web3 = require('web3');
-
-let host = window.location.host;
-if (host.indexOf(':') != -1) {
-    host = host.substr(0, host.indexOf(':'));
-}
-
-var web3 = new Web3("ws://"+ host +":8545");
-
-window.web3 = web3;
+import {Token} from '../services/smartcontract';
 
 export default class Home extends Component {    
     render() {
@@ -37,41 +27,23 @@ class TokenStats extends Component {
             totalSupply: 0,
             walletCount: 0,
             fromAddress: address,
-            symbol: ' XHK'
+            symbol: ' '
         };
-
-        let contractData = Settings.load();
-        let gasPriceWei='20000000000';
-
-        console.info(contractData);
-
-        this.contract = new web3.eth.Contract(JSON.parse(contractData.jsonInterface).abi, contractData.address, {
-            from: address, // default from address
-            gasPrice: gasPriceWei // default gas price in wei, 20 gwei in this case
-        });
     }
 
     componentDidMount() {
         let self=this;
+        let supply = Token.totalSupply();
+        let volume24H = Token.volume24H();
+        let symbol = Token.symbol();
 
-        let p1 = this.contract.methods.totalSupply()
-        .call({from: this.state.fromAddress});
-
-        let p2 = this.contract.methods.decimals()
-        .call({from: this.state.fromAddress});
-
-        self.contract.methods.symbol()
-        .call({from: self.state.fromAddress})
-        .then(function (symbol){
-            self.setState({symbol: ' ' + symbol});
-        });
-
-        Promise.all([p1, p2])
+        Promise.all([supply, volume24H, symbol])
         .then(function (ary){
-            var totalSupply = ary[0];
-            var decimals = ary[1];
-
-            self.setState({totalSupply: totalSupply / Math.pow(10,decimals)});
+            self.setState({
+                volume24H: ary[1],
+                totalSupply: ary[0],
+                symbol: ' ' + ary[2]
+            });
         });
     }
 
