@@ -100,7 +100,7 @@ export class Token {
             resolve([]);
         });        
     }
-    https://github.com/pywaves/pywaves
+
     static getAllAssets() {
         return new Promise(function (resolve, reject){
             resolve([]);
