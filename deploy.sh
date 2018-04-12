@@ -2,6 +2,7 @@
 cd xhike-app && git pull
 cp build.zip ../
 cd ../
-unzip build.zip
+# overwriting files without confirmation
+unzip -o build.zip
+rm -f build.zip
 echo "DONE"
-rm build.zip
