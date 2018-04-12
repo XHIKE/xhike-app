@@ -28,7 +28,7 @@ ownership.
 
 ## Major Components
 
-    * Waves Token 
+    * XHIKE Coin (Implemented as a Waves Token)
 
     * Decentralized and fast Exchange (built right into the blockchain)
 
