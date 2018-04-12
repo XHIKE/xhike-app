@@ -4,3 +4,4 @@ cp build.zip ../
 cd ../
 unzip build.zip
 echo "DONE"
+rm build.zip
