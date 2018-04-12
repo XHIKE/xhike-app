@@ -36,4 +36,4 @@ ownership.
 
     * Wallet & Web Platform
 
-    * Integration with Ethereum Smart Contract
+    * Integration with Ethereum Tokens (ERC20 & ERC225)
