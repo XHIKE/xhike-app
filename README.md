@@ -22,7 +22,7 @@ XHIKE has a plethora of products and offers to its holders:
 ## Architecture
 XHIKE is a Network composed by a Token emited on the Waves blockchain and a set of products
 channels, community, tools and a interactive and futuristic marketplace that enable its holder to not only send and receive 
-XHIKE but buying products, tokens, services, goods and any product that can be purchased by a digital transfer of 
+XHIKE but also buying products, tokens, services, goods and any product that can be purchased by a digital transfer of 
 ownership.
 
 
