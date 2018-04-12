@@ -8,5 +8,14 @@ export default class Marketplace extends Component {
                 <GoogleApiWrapper />
             </div>
         );
+    }    
+
+    centerToUserLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                this.map.setCenter(initialLocation);
+            });
+        }        
     }
 }

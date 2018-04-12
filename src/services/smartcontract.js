@@ -45,66 +45,65 @@ export default class Settings {
 
 export class Token {
     static name() {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             // totalSupply: totalSupply / Math.pow(10,decimals)
             resolve('XHIKE');
         });
     }
 
     static symbol() {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             // totalSupply: totalSupply / Math.pow(10,decimals)
             resolve('XHK');
         });
     }
 
     static totalSupply() {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             // totalSupply: totalSupply / Math.pow(10,decimals)
             resolve(58000000);
         });
     }
 
     static volume24H() {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             resolve(1244560);
         });
     }
 
     static countWallets() {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             resolve(24000);
-        });        
+        });
     }
 
     static filterTx(start, limit) {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             resolve([]);
         });
     }
 
     static getTx(txHash) {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             resolve([]);
         });
     }
 
     static getBlock(blockTash) {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             resolve([]);
         });
     }
 
     static getAsset(assetId) {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             resolve([]);
-        });        
+        });
     }
 
     static getAllAssets() {
-        return new Promise(function (resolve, reject){
+        return new Promise(function (resolve, reject) {
             resolve([]);
-        });        
+        });
     }
 }
-
