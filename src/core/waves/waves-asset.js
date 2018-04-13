@@ -6,16 +6,22 @@ export function fetchAssets(fromAddress) {
         .then(function (resp){
             resp.json()
             .then(function(data) {
-                let tx=123;         
                 let assets=data.balances.map(assetTransformer);
                 resolve(assets);
             });
         }, reject);
-    })
+    });
 }
 
-export function fetchAssetById(assetId) {
-    return 1;
+export function fetchAssetDetails(assetId) {
+    return new Promise(function (resolve, reject){
+        fetch(AppConfig.node+"assets/details/"+assetId)
+        .then(function (resp){
+            resp.json().then(function(data) {
+                resolve(data);
+            });
+        }, reject);
+    });
 }
 
 function assetTransformer(jsonAsset) {

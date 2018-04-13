@@ -3,11 +3,22 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Counter from '../components/counter';
 import TableData from '../components/tabledata';
 import {Token} from '../services/smartcontract';
+import {fetchAssetDetails} from '../core/waves/waves-asset';
 
 export default class AssetMarketScreen extends Component {
     constructor(props) {
         super(props);
         this.assetId = this.props.match.params.assetId;
+        this.state = {            
+        }
+    }
+
+    componentDidMount() {
+        const self = this;
+        fetchAssetDetails(this.assetId)
+        .then(function (asset) {
+            self.asset = asset;
+        });
     }
 
     render() {
@@ -37,21 +48,21 @@ class TokenStats extends Component {
     }
 
     componentDidMount() {
-        let self=this;
-        let supply = Token.totalSupply();
-        let volume24H = Token.volume24H();
-        let symbol = Token.symbol();
-        let wallets = Token.countWallets();
+        // let self=this;
+        // let supply = Token.totalSupply();
+        // let volume24H = Token.volume24H();
+        // let symbol = Token.symbol();
+        // let wallets = Token.countWallets();
 
-        Promise.all([supply, volume24H, symbol, wallets])
-        .then(function (ary){
-            self.setState({
-                volume24H: ary[1],
-                totalSupply: ary[0],
-                symbol: ' ' + ary[2],
-                walletCount: ary[3]
-            });
-        });
+        // Promise.all([supply, volume24H, symbol, wallets])
+        // .then(function (ary){
+        //     self.setState({
+        //         volume24H: ary[1],
+        //         totalSupply: ary[0],
+        //         symbol: ' ' + ary[2],
+        //         walletCount: ary[3]
+        //     });
+        // });
     }
 
     render() {
