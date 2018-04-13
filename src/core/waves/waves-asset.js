@@ -14,6 +14,10 @@ export function fetchAssets(fromAddress) {
     })
 }
 
+export function fetchAssetById(assetId) {
+    return 1;
+}
+
 function assetTransformer(jsonAsset) {
     let decimals = jsonAsset.issueTransaction.decimals;
     let totalSupply = jsonAsset.issueTransaction.quantity;

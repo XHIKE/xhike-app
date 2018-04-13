@@ -12,15 +12,9 @@ export default class HomeScreen extends Component {
     }
 
     componentDidMount() {
-        let address='3NTUMbormrfkGCprCTaYqMHtxkPuzWga9EP';        
+        this.loadTokens();
         const self=this;
-
-        setInterval(function() {
-            fetchAssets(address)
-            .then(function (assets) {
-                self.setState({assets});
-            });
-        }, 2000);
+        setInterval(function(){ self.loadTokens(); }, 2000);
     }
 
     render() {
@@ -31,6 +25,15 @@ export default class HomeScreen extends Component {
                 </div>
             </div>
         );
+    }
+
+    loadTokens() {
+        let address='3NTUMbormrfkGCprCTaYqMHtxkPuzWga9EP';
+        let self=this;
+        fetchAssets(address)
+        .then(function (assets) {
+            self.setState({assets});
+        });
     }
 }
 

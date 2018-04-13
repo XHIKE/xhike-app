@@ -61,12 +61,6 @@ class MenuItemList extends Component {
                                 <i className="fa fa-lock"></i>
                             </Link>
                         </li>
-
-                        {/* <li className="dropdown tasks-menu">
-                            <Link activeClassName="topMenuActive" to={'/contract/settings'}>
-                                <i className="fa fa-balance-scale"></i>
-                            </Link>
-                        </li> */}
                     </ul>
                 </div>
             </div>

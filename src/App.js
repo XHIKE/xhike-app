@@ -7,6 +7,7 @@ import Navbar from './components/navbar';
 import HomeScreen from './screens/home';
 import MarketplaceScreen from './screens/marketplace';
 import WalletScreen from './screens/wallet';
+import AssetMarketScreen from './screens/asset-market';
 
 export default class App extends Component {
     render() {
@@ -19,6 +20,7 @@ export default class App extends Component {
                         <Route path="/home" component={HomeScreen}/>
                         <Route path="/marketplace" component={MarketplaceScreen}/>
                         <Route path="/wallet" component={WalletScreen}/>
+                        <Route path="/assets/:assetId" component={AssetMarketScreen}/>
                     </section>
                 </div>
             </Router>
