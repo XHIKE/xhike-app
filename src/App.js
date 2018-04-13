@@ -1,12 +1,12 @@
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 import Navbar from './components/navbar';
-import Home from './screens/home';
-import Marketplace from './screens/marketplace';
-import Wallet from './screens/wallet';
-import ContractSettings from './screens/contract-settings';
+import HomeScreen from './screens/home';
+import MarketplaceScreen from './screens/marketplace';
+import WalletScreen from './screens/wallet';
 
 export default class App extends Component {
     render() {
@@ -15,11 +15,10 @@ export default class App extends Component {
                 <div className="content-wrapper">
                     <Navbar />
                     <section className="content">
-                        <Route exact path="/" component={Home}/>
-                        <Route path="/home" component={Home}/>
-                        <Route path="/marketplace" component={Marketplace}/>
-                        <Route path="/wallet" component={Wallet}/>
-                        <Route path="/contract/settings" component={ContractSettings}/>
+                        <Route exact path="/" component={HomeScreen}/>
+                        <Route path="/home" component={HomeScreen}/>
+                        <Route path="/marketplace" component={MarketplaceScreen}/>
+                        <Route path="/wallet" component={WalletScreen}/>
                     </section>
                 </div>
             </Router>

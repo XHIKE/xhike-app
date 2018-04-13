@@ -1,15 +1,15 @@
 const jsonInterface = require('./jsonInterface.json');
 
-var Web3 = require('web3');
+// var Web3 = require('web3');
 
-let host = window.location.host;
-if (host.indexOf(':') != -1) {
-    host = host.substr(0, host.indexOf(':'));
-}
+// let host = window.location.host;
+// if (host.indexOf(':') != -1) {
+//     host = host.substr(0, host.indexOf(':'));
+// }
 
-var web3 = new Web3("ws://"+ host +":8545");
+// var web3 = new Web3("ws://"+ host +":8545");
 
-window.web3 = web3;
+// window.web3 = web3;
 
 export default class Settings {
     static setAddress(value) {

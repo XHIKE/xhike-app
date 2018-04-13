@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleApiWrapper from '../components/map';
 
-export default class Marketplace extends Component {
+export default class MarketplaceScreen extends Component {
     render() {
         return (
             <div className="App">
