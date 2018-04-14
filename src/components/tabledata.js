@@ -18,73 +18,28 @@ export default class TableData extends Component {
                             <th>Fees</th>
                         </tr>
                     </thead>
+
                     <tbody>
-
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                        <td>Call of Duty IV</td>
-                        <td><span className="label label-success">Shipped</span></td>
-                        <td>
-                            <div className="sparkbar" data-color="#00a65a" data-height="20"><canvas style={{display: 'inline-block', width: '34px', height: '20px', verticalAlign: 'top'}} width="34" height="20"></canvas></div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                        <td>Samsung Smart TV</td>
-                        <td><span className="label label-warning">Pending</span></td>
-                        <td>
-                            <div className="sparkbar" data-color="#f39c12" data-height="20"><canvas style={{display: 'inline-block', width: '34px', height: '20px', verticalAlign: 'top'}} width="34" height="20"></canvas></div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                        <td>iPhone 6 Plus</td>
-                        <td><span className="label label-danger">Delivered</span></td>
-                        <td>
-                            <div className="sparkbar" data-color="#f56954" data-height="20"><canvas style={{display: 'inline-block', width: '34px', height: '20px', verticalAlign: 'top'}} width="34" height="20"></canvas></div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                        <td>Samsung Smart TV</td>
-                        <td><span className="label label-info">Processing</span></td>
-                        <td>
-                            <div className="sparkbar" data-color="#00c0ef" data-height="20"><canvas style={{display: 'inline-block', width: '34px', height: '20px', verticalAlign: 'top'}} width="34" height="20"></canvas></div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                        <td>Samsung Smart TV</td>
-                        <td><span className="label label-warning">Pending</span></td>
-                        <td>
-                            <div className="sparkbar" data-color="#f39c12" data-height="20"><canvas style={{display: 'inline-block', width: '34px', height: '20px', verticalAlign: 'top'}} width="34" height="20"></canvas></div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                        <td>iPhone 6 Plus</td>
-                        <td><span className="label label-danger">Delivered</span></td>
-                        <td>
-                            <div className="sparkbar" data-color="#f56954" data-height="20"><canvas style={{display: 'inline-block', width: '34px', height: '20px', verticalAlign: 'top'}} width="34" height="20"></canvas></div>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                        <td>Call of Duty IV</td>
-                        <td><span className="label label-success">Shipped</span></td>
-                        <td>
-                            <div className="sparkbar" data-color="#00a65a" data-height="20"><canvas style={{display: 'inline-block', width: '34px', height: '20px', verticalAlign: 'top'}} width="34" height="20"></canvas></div>
-                        </td>
-                    </tr>
+                        {this.props.txList.map(TxListItem)}
                     </tbody>
                 </table>
             </div>
         );
     }
+}
+
+function TxListItem(props) {
+    return (
+        <tr>
+            <td><a href="#">{props.id}</a></td>
+            <td>{props.blockHeight}</td>
+            <td>{props.timestamp}</td>
+            <td>{props.sender}</td>
+            <td>{props.recipient}</td>
+            <td>{props.amountFmt}</td>
+            <td>
+                {props.fee}
+            </td>
+        </tr>
+    );
 }

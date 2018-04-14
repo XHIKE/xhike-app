@@ -32,7 +32,8 @@ export default class HomeScreen extends Component {
     }
 
     loadTokens() {
-        let address='3NTUMbormrfkGCprCTaYqMHtxkPuzWga9EP';
+        // let address='3NTUMbormrfkGCprCTaYqMHtxkPuzWga9EP';
+        let address='3NV8cwQH4YCoqrTxFYhedf4CBw5G2N14P6r';
         let self=this;
         fetchAssets(address)
         .then(function (assets) {

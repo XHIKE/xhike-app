@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Counter from '../components/counter';
 import TableData from '../components/tabledata';
 import {Token} from '../services/smartcontract';
-import {fetchAssetDetails, formatTotalSupply} from '../core/waves/waves-asset';
+import {fetchAssetDetails, fetchLastTx, formatTotalSupply} from '../core/waves/waves-asset';
 
 export default class AssetMarketScreen extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ export default class AssetMarketScreen extends Component {
                         totalSupply={this.state.totalSupply}
                         symbol={this.state.symbol}
                     />
-                    <TokenTx />
+                    <TokenTx asset={this.state.asset} />
                 </div>
             </div>
         );
@@ -35,28 +35,17 @@ export default class AssetMarketScreen extends Component {
         fetchAssetDetails(assetId)
         .then((asset) => {
             this.asset = asset;
-            console.info(asset);
             this.setState({
                 walletCount: asset.walletCount,
                 totalSupply: formatTotalSupply(asset),
-                symbol: ' ' + asset.name
+                symbol: ' ' + asset.name,
+                asset: asset
             });
         });        
     }
 }
 
 class TokenStats extends Component {
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //     volume24H: props.volume24H || 0,
-        //     totalSupply: props.totalSupply || 0,
-        //     walletCount: props.walletCount || 0,
-        //     symbol: props.symbol || ' ',
-        //     fromAddress: "",
-        // };
-    }
-
     render() {
         return (
             <div>
@@ -69,6 +58,38 @@ class TokenStats extends Component {
 }
 
 class TokenTx extends Component {
+    constructor(props) {
+        super(props);
+        this.state={
+            txList: []
+        };
+    }
+
+    componentDidMount() {
+        this.fetchTxInterval = setInterval(() => this.loadTx(), 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.fetchTxInterval);
+    }
+
+    loadTx() {
+        if (!this.props.asset) { 
+            console.error("No asset");
+            return 
+        };
+
+        fetchLastTx(this.props.asset)
+        .then((txData) => {  
+            console.info("txList: ", txData);
+            if (txData.length == 0) {
+                return;
+            }
+            var list=this.state.txList.concat(txData);
+            this.setState({txList: list});
+        });        
+    }
+
     render() {
         return (
             <div className="col-sm-12">
@@ -84,7 +105,7 @@ class TokenTx extends Component {
                     </div>
 
                     <div className="box-body">
-                        <TableData />
+                        <TableData txList={this.state.txList} />
                     </div>
 
                     <div className="box-footer clearfix">
