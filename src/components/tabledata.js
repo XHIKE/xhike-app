@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 // TxHash 	Block 	Age 	From 		To 	Value 	[TxFee]
+// moment(1523700166422).format("MMMM DD, YYYY H:mm:ss")
 
 export default class TableData extends Component {
     render() {
@@ -29,11 +31,12 @@ export default class TableData extends Component {
 }
 
 function TxListItem(props) {
+    let time=moment(props.timestamp).format("MMMM DD, YYYY H:mm:ss");
     return (
         <tr>
             <td><a href="#">{props.id}</a></td>
-            <td>{props.blockHeight}</td>
-            <td>{props.timestamp}</td>
+            <td>{props.height}</td>
+            <td>{time}</td>
             <td>{props.sender}</td>
             <td>{props.recipient}</td>
             <td>{props.amountFmt}</td>
