@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink as Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
+import {formatTotalSupply} from '../core/waves/waves-asset';
 
 export default class AssetList extends Component {
     constructor(props) {
@@ -36,13 +37,14 @@ export default class AssetList extends Component {
 }
 
 const AssetListItem = function (props) {
-    let decimals=Math.pow(10, props.decimals);
-    if (decimals > 0) {
-        decimals -= 1;
-        decimals = `.${decimals}`;
-    } else {
-        decimals = '';
-    }
+    // let decimals=Math.pow(10, props.decimals);
+    // if (decimals > 0) {
+    //     decimals -= 1;
+    //     decimals = `.${decimals}`;
+    // } else {
+    //     decimals = '';
+    // }
+    const totalSupplyFmt = formatTotalSupply(props);
 
     return (
         <tr>
@@ -54,11 +56,11 @@ const AssetListItem = function (props) {
             <td>{props.assetId}</td>
             <td>
                 <NumberFormat 
-                    value={props.totalSupply} 
+                    value={totalSupplyFmt} 
                     displayType={'text'} 
                     thousandSeparator={true}  
                     suffix={props.symbol} 
-                />{decimals}
+                />
             </td>
         </tr>
     );

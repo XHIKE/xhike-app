@@ -18,18 +18,40 @@ export function fetchAssetDetails(assetId) {
         fetch(AppConfig.node+"assets/details/"+assetId)
         .then(function (resp){
             resp.json().then(function(data) {
-                resolve(data);
+                fetch(AppConfig.node+"assets/"+assetId+"/distribution")
+                .then(function (resp2){
+                    resp2.json()
+                    .then(function (dist) {
+                        var addresses = Object.keys(dist);
+                        var walletCount = addresses.length;
+                        data.walletCount = walletCount;
+                        resolve(data);               
+                    }, reject);
+                }, reject);
             });
         }, reject);
     });
 }
 
+export function formatTotalSupply(asset) {
+    const decimals = asset.decimals;
+    let totalSupply = asset.quantity;
+    let decimalsFmt;
+
+    if (decimals > 0) {
+        const decimalsSq=Math.pow(10, decimals);
+        totalSupply = totalSupply / decimalsSq;
+        decimalsFmt = `.${decimalsSq - 1}`;
+    } else {
+        decimalsFmt = '';        
+    }
+
+    return totalSupply + decimalsFmt;
+}
+
 function assetTransformer(jsonAsset) {
     let decimals = jsonAsset.issueTransaction.decimals;
     let totalSupply = jsonAsset.issueTransaction.quantity;
-    if (decimals > 0) {
-        totalSupply = totalSupply / Math.pow(10, decimals);
-    }
 
     return {
         id: jsonAsset.id,
@@ -41,3 +63,5 @@ function assetTransformer(jsonAsset) {
         decimals: decimals
     };
 }
+
+

@@ -14,8 +14,12 @@ export default class HomeScreen extends Component {
     componentDidMount() {
         this.loadTokens();
         const self=this;
-        setInterval(function(){ self.loadTokens(); }, 2000);
+        this.interval = setInterval(() => this.loadTokens(), 2000);
     }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+      }    
 
     render() {
         return (

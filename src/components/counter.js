@@ -25,7 +25,7 @@ export default class Counter extends Component {
                         </span>
                         <span className="info-box-number">
                             <NumberFormat 
-                                value={this.props.count} 
+                                value={this.props.count || 0} 
                                 displayType={'text'} 
                                 thousandSeparator={true}  
                                 suffix={this.props.symbol} 

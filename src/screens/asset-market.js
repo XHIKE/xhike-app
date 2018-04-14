@@ -3,74 +3,66 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Counter from '../components/counter';
 import TableData from '../components/tabledata';
 import {Token} from '../services/smartcontract';
-import {fetchAssetDetails} from '../core/waves/waves-asset';
+import {fetchAssetDetails, formatTotalSupply} from '../core/waves/waves-asset';
 
 export default class AssetMarketScreen extends Component {
     constructor(props) {
         super(props);
         this.assetId = this.props.match.params.assetId;
-        this.state = {            
-        }
+        this.state = {}
     }
 
     componentDidMount() {
-        const self = this;
-        fetchAssetDetails(this.assetId)
-        .then(function (asset) {
-            self.asset = asset;
-        });
+        this.loadAsset(this.assetId);
     }
 
     render() {
         return (
             <div className="container-fluid" style={{marginTop: '15px'}}>
                 <div className="row">
-                    <TokenStats />
+                    <TokenStats assetId={this.assetId} 
+                        walletCount={this.state.walletCount} 
+                        totalSupply={this.state.totalSupply}
+                        symbol={this.state.symbol}
+                    />
                     <TokenTx />
                 </div>
             </div>
         );
+    }
+
+    loadAsset(assetId) {
+        fetchAssetDetails(assetId)
+        .then((asset) => {
+            this.asset = asset;
+            console.info(asset);
+            this.setState({
+                walletCount: asset.walletCount,
+                totalSupply: formatTotalSupply(asset),
+                symbol: ' ' + asset.name
+            });
+        });        
     }
 }
 
 class TokenStats extends Component {
     constructor(props) {
         super(props);
-        let address = props.address || '0x4861c5f2563586069690b8ee9e5dec8fab626406';
-
-        this.state = {
-            volume24H: 0,
-            totalSupply: 0,
-            walletCount: 0,
-            fromAddress: address,
-            symbol: ' '
-        };
-    }
-
-    componentDidMount() {
-        // let self=this;
-        // let supply = Token.totalSupply();
-        // let volume24H = Token.volume24H();
-        // let symbol = Token.symbol();
-        // let wallets = Token.countWallets();
-
-        // Promise.all([supply, volume24H, symbol, wallets])
-        // .then(function (ary){
-        //     self.setState({
-        //         volume24H: ary[1],
-        //         totalSupply: ary[0],
-        //         symbol: ' ' + ary[2],
-        //         walletCount: ary[3]
-        //     });
-        // });
+        // this.state = {
+        //     volume24H: props.volume24H || 0,
+        //     totalSupply: props.totalSupply || 0,
+        //     walletCount: props.walletCount || 0,
+        //     symbol: props.symbol || ' ',
+        //     fromAddress: "",
+        // };
     }
 
     render() {
         return (
             <div>
-                <Counter label="24H Volume" count={this.state.volume24H} symbol={this.state.symbol} />
-                <Counter label="Total supply" count={this.state.totalSupply} symbol={this.state.symbol} />
-                <Counter label="Wallets" count={this.state.walletCount} />
+                <Counter label="24H Volume" count={this.props.volume24H} symbol={this.props.symbol} />
+                <Counter label="Total supply" count={this.props.totalSupply} symbol={this.props.symbol} />
+                <Counter label="Wallets" count={this.props.walletCount} />
             </div>
         );
     }
